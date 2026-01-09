@@ -1,10 +1,10 @@
 [
-  { "title": "Git", "image": "git.png" },
-  { "title": "Github Action", "image": "github-action.png" },
-  { "title": "Docker", "image": "docker.png" },
-  { "title": "Kubernetes", "image": "kubernetes.png" },
-  { "title": "Prometheus", "image": "prometheus.png" },
-  { "title": "Grafana", "image": "grafana.png" },
-  { "title": "ArgoCD", "image": "argocd.png" },
-  { "title": "Nginx", "image": "nginx.png" }
+  { "title": "Git", "image": "git.png", "code": "git" },
+  { "title": "Github Action", "image": "github-action.png", "code": "github-action" },
+  { "title": "Docker", "image": "docker.png", "code": "docker" },
+  { "title": "Kubernetes", "image": "kubernetes.png", "code": "kubernetes" },
+  { "title": "Prometheus", "image": "prometheus.png", "code": "prometheus" },
+  { "title": "Grafana", "image": "grafana.png", "code": "grafana" },
+  { "title": "ArgoCD", "image": "argocd.png", "code": "argocd" },
+  { "title": "Nginx", "image": "nginx.png", "code": "nginx" }
 ]

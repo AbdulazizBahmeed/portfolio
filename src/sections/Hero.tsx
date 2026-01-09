@@ -1,4 +1,9 @@
+import { useTranslation } from "react-i18next";
+
+
 function Hero() {
+    const { t } = useTranslation();
+
   return (
     <>
       <section
@@ -9,31 +14,29 @@ function Hero() {
           <div className="flex lg:justify-between justify-center flex-align-center flex-wrap">
             <div className="lg:max-w-[60%]">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Hello, I'm
+                {t("hero.greeting")}
               </h2>
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                <span className="gradient-text">Abdulaziz Bahmeed</span>
+                <span className="gradient-text">{t("hero.full_name")}</span>
               </h1>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                <span className="gradient-text">DevOps Engineer</span>
+                <span className="gradient-text">{t("hero.job_title")}</span>
               </h2>
               <p className="text-gray-400 mb-8">
-                I build and maintain scalable infrastructure, automate
-                deployments, and implement DevOps best practices to accelerate
-                software delivery.
+                {t("hero.short_bio")}
               </p>
               <div className="flex space-x-4">
                 <a
                   href="#skills"
                   className="border-2 border-red-600 text-red-500 px-8 py-3 rounded-lg hover:bg-red-600 hover:text-white transition"
                 >
-                  My Skills
+                  {t("hero.skills")}
                 </a>
                 <a
                   href="#contact"
                   className="bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-3 rounded-lg hover:shadow-lg hover:shadow-red-500/50 transition"
                 >
-                  Contact Me
+                  {t("hero.contact")}
                 </a>
               </div>
             </div>

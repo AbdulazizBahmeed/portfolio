@@ -6,6 +6,11 @@ function NavBar() {
   const { i18n } = useTranslation();
   const { t } = useTranslation();
 
+  function changeLanguage(lang: string) {
+    i18n.changeLanguage(lang);
+    localStorage.setItem("lang", lang);
+  }
+
   const LANGUAGES = {
     ar: {
       next: "en",
@@ -13,12 +18,11 @@ function NavBar() {
     },
     en: {
       next: "ar",
-      label: "عربي",
+      label: "AR",
     },
   };
 
   const currentLang = i18n.language as keyof typeof LANGUAGES;
-
 
   return (
     <>
@@ -52,7 +56,7 @@ function NavBar() {
               </a>
               <button
                 className="nav-link text-white hover:text-red-500"
-                onClick={() => i18n.changeLanguage(`${LANGUAGES[currentLang].next}`)}
+                onClick={() => changeLanguage(LANGUAGES[currentLang].next)}
               >
                 {LANGUAGES[currentLang].label}
               </button>

@@ -1,13 +1,17 @@
 import skills from "../skills.json";
+import { useTranslation } from "react-i18next";
+
 
 function Skills() {
+    const { t } = useTranslation();
+
   return (
     <>
       <section id="skills" className="py-30 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Technical Skills
+              {t("skills.title")}
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-red-800 mx-auto"></div>
           </div>
@@ -21,7 +25,7 @@ function Skills() {
                 <img
                   className="max-w-[50%] md:max-w-[60%] h-auto lg:max-w-[75%]"
                   src={`assets/${skill.image}`}
-                  alt={skill.title}
+                  alt={t(`skills.${skill.code}`)}
                 />
                 <h3 className="text-base md:text-xl font-semibold text-white mt-5">
                   {skill.title}

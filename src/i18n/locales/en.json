@@ -4,5 +4,28 @@
     "about": "About Me",
     "skills": "Technical Skills",
     "contact": "Contact Me"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "full_name": "Abdulaziz Bahameed",
+    "job_title": "DevOps Engineer",
+    "short_bio": "I build and maintain scalable infrastructure, automate deployments, and implement DevOps best practices to accelerate software delivery.",
+    "skills": "My Skills",
+    "contact": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "With extensive experience in cloud infrastructure and DevOps practices, I specialize in building robust CI/CD pipelines, implementing GitOps workflows, and orchestrating containerized applications. My passion lies in automating processes and creating scalable, reliable systems that enable teams to deliver software faster and more efficiently."
+  },
+  "skills": {
+    "title": "Technical Skills"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "description": "If you'd like to discuss a project, have any questions, or just want to get in touch, feel free to reach out to me through the following means:",
+    "email": "Email",
+    "name": "Name",
+    "message": "Message",
+    "send": "Send"
   }
 }
