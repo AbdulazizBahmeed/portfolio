@@ -17,6 +17,9 @@ function NavBar() {
     },
   };
 
+  const currentLang = i18n.language as keyof typeof LANGUAGES;
+
+
   return (
     <>
       <nav className="fixed w-full bg-black shadow-lg z-50 ">
@@ -49,9 +52,9 @@ function NavBar() {
               </a>
               <button
                 className="nav-link text-white hover:text-red-500"
-                onClick={() => i18n.changeLanguage(`${LANGUAGES[i18n.language].next}`)}
+                onClick={() => i18n.changeLanguage(`${LANGUAGES[currentLang].next}`)}
               >
-                {LANGUAGES[i18n.language].label}
+                {LANGUAGES[currentLang].label}
               </button>
             </div>
             <button
