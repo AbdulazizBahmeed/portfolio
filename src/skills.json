@@ -1,0 +1,10 @@
+[
+  { "title": "Git", "image": "git.png" },
+  { "title": "Github Action", "image": "github-action.png" },
+  { "title": "Docker", "image": "docker.png" },
+  { "title": "Kubernetes", "image": "kubernetes.png" },
+  { "title": "Prometheus", "image": "prometheus.png" },
+  { "title": "Grafana", "image": "grafana.png" },
+  { "title": "ArgoCD", "image": "argocd.png" },
+  { "title": "Nginx", "image": "nginx.png" }
+]
