@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 function ContactMe() {
   const { t } = useTranslation();
@@ -55,21 +56,21 @@ function ContactMe() {
     setLoading(true);
 
     try {
-        const response = await fetch("https://api.example.com/contact", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(form),
-        });
+      const response = await fetch("https://api.example.com/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
-        if (!response.ok) {
-          alert("Something went wrong with server. Please try again.");
-        }
-
+      if (!response.ok) {
+        toast.error(t("contact.server_error"));
+      }
       setForm({ name: "", email: "", message: "" });
+      toast.success(t("contact.success_message"));
     } catch (error) {
-      alert("Something went wrong. Please try again.");
+      toast.error(t("contact.error_message"));
     } finally {
       setLoading(false);
     }
@@ -122,7 +123,9 @@ function ContactMe() {
                   rows={5}
                 ></textarea>
                 {errors.message && (
-                  <p className="px-3 pb-3 text-red-500 text-sm">{errors.message}</p>
+                  <p className="px-3 pb-3 text-red-500 text-sm">
+                    {errors.message}
+                  </p>
                 )}
                 <button
                   className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-3 rounded-lg hover:shadow-lg hover:shadow-red-500/50 transition"
