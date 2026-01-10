@@ -27,5 +27,17 @@
     "name": "Name",
     "message": "Message",
     "send": "Send"
+  },
+  "validation": {
+    "name": {
+      "required": "The name field is required"
+    },
+    "message": {
+      "required": "The message field is required"
+    },
+    "email": {
+      "required": "The email field is required",
+      "invalid_email": "Please enter a valid email address"
+    }
   }
 }

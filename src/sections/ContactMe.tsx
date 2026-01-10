@@ -24,19 +24,19 @@ function ContactMe() {
     };
 
     if (!form.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = t("validation.name.required");
       isSucceeded = false;
     }
 
     if (!form.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("validation.email.required");
     } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
-      newErrors.email = "Invalid email address";
+      newErrors.email = t("validation.email.invalid_email");
       isSucceeded = false;
     }
 
     if (!form.message.trim()) {
-      newErrors.message = "Message is required";
+      newErrors.message = t("validation.message.required");
       isSucceeded = false;
     }
     console.log(newErrors);
@@ -55,17 +55,17 @@ function ContactMe() {
     setLoading(true);
 
     try {
-      //   const response = await fetch("https://api.example.com/contact", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(form),
-      //   });
+        const response = await fetch("https://api.example.com/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
 
-      //   if (!response.ok) {
-      //     alert("Something went wrong with server. Please try again.");
-      //   }
+        if (!response.ok) {
+          alert("Something went wrong with server. Please try again.");
+        }
 
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
