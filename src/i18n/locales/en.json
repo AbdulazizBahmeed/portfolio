@@ -25,17 +25,17 @@
     "description": "If you'd like to discuss a project, have any questions, or just want to get in touch, feel free to reach out to me through the following means:",
     "email": "Email",
     "name": "Name",
-    "message": "Message",
+    "content": "Message",
     "send": "Send",
     "success_message": "Your message has been sent successfully!",
     "error_message": "An error occurred while sending your message.",
     "server_error": "A server error occurred."
   },
   "validation": {
-    "name": {
+    "full_name": {
       "required": "The name field is required"
     },
-    "message": {
+    "content": {
       "required": "The message field is required"
     },
     "email": {

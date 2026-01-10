@@ -5,27 +5,28 @@ import { toast } from "react-hot-toast";
 function ContactMe() {
   const { t } = useTranslation();
   const [form, setForm] = useState({
-    name: "",
+    full_name: "",
     email: "",
-    message: "",
+    content: "",
   });
   const [errors, setErrors] = useState({
-    name: "",
+    full_name: "",
     email: "",
-    message: "",
+    content: "",
   });
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   function validate() {
     let isSucceeded = true;
     const newErrors = {
-      name: "",
+      full_name: "",
       email: "",
-      message: "",
+      content: "",
     };
 
-    if (!form.name.trim()) {
-      newErrors.name = t("validation.name.required");
+    if (!form.full_name.trim()) {
+      newErrors.full_name = t("validation.full_name.required");
       isSucceeded = false;
     }
 
@@ -36,8 +37,8 @@ function ContactMe() {
       isSucceeded = false;
     }
 
-    if (!form.message.trim()) {
-      newErrors.message = t("validation.message.required");
+    if (!form.content.trim()) {
+      newErrors.content = t("validation.content.required");
       isSucceeded = false;
     }
     console.log(newErrors);
@@ -49,30 +50,37 @@ function ContactMe() {
   async function handleSend() {
     if (!validate()) return;
     setErrors({
-      name: "",
+      full_name: "",
       email: "",
-      message: "",
+      content: "",
     });
-    setLoading(true);
+    setIsLoading(true);
 
     try {
-      const response = await fetch("https://api.example.com/contact", {
+      const response = await fetch(`${BASE_URL}/api/messages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(form),
       });
 
       if (!response.ok) {
-        toast.error(t("contact.server_error"));
+        if (response.status == 422) {
+          const json = await response.json();
+          toast.error(json.message);
+        } else {
+          toast.error(t("contact.server_error"));
+        }
+      } else {
+        setForm({ full_name: "", email: "", content: "" });
+        toast.success(t("contact.success_message"));
       }
-      setForm({ name: "", email: "", message: "" });
-      toast.success(t("contact.success_message"));
     } catch (error) {
       toast.error(t("contact.error_message"));
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
@@ -94,44 +102,76 @@ function ContactMe() {
             <div className="bg-gray-900 rounded-lg p-8 shadow-2xl border border-gray-800">
               <div className="space-y-4">
                 <input
-                  className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-white"
+                  className="
+                  w-full px-4 py-3 bg-black border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-white disabled:bg-gray-900 disabled:text-gray-500 disabled:border-gray-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:focus:ring-0"
                   placeholder={t("contact.name")}
                   type="text"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  value={form.full_name}
+                  disabled={isLoading}
+                  onChange={(e) =>
+                    setForm({ ...form, full_name: e.target.value })
+                  }
                 />
-                {errors.name && (
-                  <p className="px-3 text-red-500 text-sm">{errors.name}</p>
+                {errors.full_name && (
+                  <p className="px-3 text-red-500 text-sm">
+                    {errors.full_name}
+                  </p>
                 )}
                 <input
-                  className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-white"
+                  className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-white disabled:bg-gray-900 disabled:text-gray-500 disabled:border-gray-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:focus:ring-0"
                   placeholder={t("contact.email")}
                   type="email"
                   value={form.email}
+                  disabled={isLoading}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
                 {errors.email && (
                   <p className="px-3 text-red-500 text-sm">{errors.email}</p>
                 )}
                 <textarea
-                  className="w-full px-4 pt-3 bg-black border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-white"
-                  placeholder={t("contact.message")}
-                  value={form.message}
+                  className="w-full px-4 pt-3 bg-black border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-white disabled:bg-gray-900 disabled:text-gray-500 disabled:border-gray-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:focus:ring-0"
+                  placeholder={t("contact.content")}
+                  value={form.content}
+                  disabled={isLoading}
                   onChange={(e) =>
-                    setForm({ ...form, message: e.target.value })
+                    setForm({ ...form, content: e.target.value })
                   }
                   rows={5}
                 ></textarea>
-                {errors.message && (
-                  <p className="px-3 pb-3 text-red-500 text-sm">
-                    {errors.message}
+                {errors.content && (
+                  <p className="px-3 pb-3 text-red-500 text-sm disabled:bg-gray-900 disabled:text-gray-500 disabled:border-gray-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:focus:ring-0 ">
+                    {errors.content}
                   </p>
                 )}
                 <button
-                  className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-3 rounded-lg hover:shadow-lg hover:shadow-red-500/50 transition"
+                  className="flex items-center justify-center w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-3 rounded-lg hover:shadow-lg hover:shadow-red-500/50 transition disabled:from-gray-700 disabled:to-gray-800 disabled:text-gray-400 disabled:cursor-not-allowed disabled:shadow-none disabled:opacity-70"
+                  disabled={isLoading}
                   onClick={() => handleSend()}
                 >
-                  {t("contact.send")}
+                  {isLoading ? (
+                    <svg
+                      className="h-5 w-5 animate-spin text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      />
+                    </svg>
+                  ) : (
+                    t("contact.send")
+                  )}
                 </button>
               </div>
             </div>
