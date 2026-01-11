@@ -48,11 +48,12 @@ function Footer() {
         <div className="py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {/* Brand Section */}
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-4">
-                <img className="max-w-[25%]" src="/assets/fav.ico" alt="" />
-              </h3>
-            </div>
+            <a
+              href="#hero"
+              className="text-xl font-bold text-white flex justify-center hover:text-red-500 transition-colors duration-200"
+            >
+              <img className="w-20 md:w-40 " src="/assets/fav.ico" alt="" />
+            </a>
 
             {/* Quick Links */}
             <div className="text-center">
