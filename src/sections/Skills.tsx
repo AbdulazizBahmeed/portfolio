@@ -2,13 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import skills from "../skills.json";
 
-interface Skill {
-  code: string;
-  title: string;
-  image: string;
-  category?: string;
-}
-
 function Skills() {
   const { t, i18n } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
