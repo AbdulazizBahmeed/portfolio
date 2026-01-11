@@ -25,7 +25,9 @@
     "description": "If you'd like to discuss a project, have any questions, or just want to get in touch, feel free to reach out to me through the following means:",
     "email": "Email",
     "name": "Name",
+    "name_placeholder": "Abdulaziz",
     "content": "Message",
+    "content_placeholder": "write your message here...",
     "send": "Send",
     "success_message": "Your message has been sent successfully!",
     "error_message": "An error occurred while sending your message.",
@@ -42,5 +44,12 @@
       "required": "The email field is required",
       "invalid_email": "Please enter a valid email address"
     }
+  },
+  "footer": {
+    "quick_links": " Quick Links",
+    "made_with": "Made With",
+    "credit": "By Abdulaziz",
+    "copy_right": "Abdulaziz Bahmeed",
+    "back_to_top":"Back To Top"
   }
 }
